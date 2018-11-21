@@ -27,6 +27,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 public class PersonController {
+	//mytest
 	private SelectPersonService selectPersonService;
 	
 	public SelectPersonService getSelectPersonService() {
