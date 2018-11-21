@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 应用临时文件使用EL语言 -->
+    
+    
+    <!-- 全局参数的设置 (缓存之类)-->
+    
+    <!-- 设置别名 (忽略大小写)-->
+     
+    <!-- 设置类名转化器 用于java 和 数据库 db传递的数据的转化 -->
+    
+</configuration>
