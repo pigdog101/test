@@ -1,16 +1,22 @@
 	package com.mzw.model;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,6 +26,7 @@ import com.mzw.daoimpl.SelectPerson;
 import com.mzw.mapper.PersonMapper;
 import com.mzw.service.SelectPersonService;
 import com.mzw.serviceimpl.SelectPersonImpl;
+
 
 public class MyBatisTest {
 	
@@ -320,4 +327,43 @@ public class MyBatisTest {
 		SelectPersonService sps = (SelectPersonService)context.getBean("spi");
 		sps.IocService();
 	}
+	@Test
+	public void jsonTest() {
+		User u = new User();
+		u.setId(1);
+		u.setUsername("mao");
+		u.setPassword("mzw");
+       JSONObject json = new JSONObject(u);
+       System.out.println(json);
+	}
+	@Test
+	public void jsonTest01() throws IOException {
+		String s =FileUtils.readFileToString(new File("D:\\gitRepository\\MyWebProject\\src\\main\\resources\\user.json"));
+		JSONObject json = new JSONObject(s);
+		System.out.println(json);
+	}
+	@Test
+	public void jsonTest03() throws IOException {
+		InputStream is = super.getClass().getClassLoader().getResourceAsStream("user.json");
+		StringBuffer sb = new StringBuffer();
+		int len = -1;
+		byte[] data = new byte[10];
+		while(-1!=(len = is.read(data))) {
+			String str =  new String (data);
+			sb.append(str);
+			
+		};
+		String s = sb.toString();
+		JSONObject json = new JSONObject(s);
+		System.out.println(json);
+		 
+	}
+	@Test
+	public void jsontest04() throws IOException {
+		User u = new User(1,"mm","zz");
+		JSONObject json = new JSONObject(u);
+		Writer writer = new FileWriter("");
+		json.write(writer);
+		writer.flush();
+	} 
 }
